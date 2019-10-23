@@ -65,3 +65,9 @@ void Players::draw(Deck * d)
 
 	
 }	
+
+void Players::evaluate(Players**)
+{
+
+
+}

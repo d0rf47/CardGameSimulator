@@ -15,6 +15,7 @@ public:
 	void setPlayer(std::string name, Cards* hand, size_t count);
 	size_t Count() { return this->count; };
 	void draw(Deck *);
+	void evaluate(Players**);
 	~Players();
 };
 

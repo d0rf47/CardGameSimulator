@@ -66,8 +66,78 @@ void Players::draw(Deck * d)
 	
 }	
 
-void Players::evaluate(Players**)
+void Players::evaluate()
 {
+	size_t pairCount = 0;
+	size_t numOfPairs = 0;
+	size_t Score = 0;
+	bool found = false;
+	int x = 0;
+	std::string handRank = "High Card";
+	bool highCard = true, Pair = false, twoPair = false, tKind = false, straight = false, flush = false, fullHouse = false, fKind = false, sFlush = false, rFlush = false;
+	int suitCounter = 0;
+	//check for pairs
+	for (size_t i = 0; i < count; i++) {
+		x = i + 1;
+		while (x < count)
+		{
+			if (hand[i].getRank() == hand[x].getRank() && &hand[i] != &hand[x]) {
+				found = true;
+				
+				if (Pair && found && pairCount > 0) {
+					tKind = true;
+					Pair = false;
+				}
+				
+				if (tKind && found && &hand[i] != &hand[x] && pairCount > 0) {
+					fKind = true;
+					tKind = false;
+				}
+				if (!tKind && !fKind) {
+					Pair = true;
+					pairCount++;
+					numOfPairs++;
+				};
+			}
+			if (hand[i].getSuit() == hand[x].getSuit() && &hand[i] != &hand[x]) {
+				suitCounter++;
+			}
+			if (suitCounter == 5) {
+				flush = true;
+			}
+			if (Pair && tKind) {
+				fullHouse = true;
+				Pair = false;
+				tKind = false;
+			}
+			x++;
+			found = false;
+		}
+		pairCount = 0;
+	}
 
-
+	if (Pair) {
+		std::cout << "Pair" << std::endl;
+	}
+	else if (numOfPairs > 1)
+	{
+		std::cout << "Two Pair" << std::endl;
+	}else
+	if (tKind) {
+		std::cout << "Three of a Kind" << std::endl;
+	}else
+	if (fKind) {
+		std::cout << "Four of a Kind" << std::endl;
+	}else
+	if (fullHouse) {
+		std::cout << "Full House" << std::endl;
+	}else
+	if (flush) {
+		std::cout << "Flush" << std::endl;
+	}
+	else
+	{
+		std::cout << "High Card" << std::endl;
+	}
+	
 }

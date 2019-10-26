@@ -28,6 +28,15 @@ public:
 	Cards getCard() {
 		return *this;
 	}
+	char getSuit() {
+		return this->suit;
+	}
+	std::string getRank() {
+		return this->rank;
+	}
+	int getVal() {
+		return this->value;
+	}
 private:
 	
 	char suit;

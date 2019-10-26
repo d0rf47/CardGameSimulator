@@ -32,6 +32,12 @@ int main() {
 		system("pause");
 		system("cls");
 	}
-
+	for (int i = 0; i < players; i++) {
+		P[i].seeHand();
+		P[i].evaluate();
+		std::cout << "------------------" << std::endl;
+	}
 	return 0;
 }
+
+
